@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpForce;
 
+    public int health = 100; // 플레이어 체력 변수 추가
+
+
 
     // 상태 변수
     private bool isWalk = false;
@@ -275,6 +278,22 @@ public class PlayerController : MonoBehaviour
     public bool GetIsGround()
     {
         return isGround;
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        Debug.Log("플레이어가 데미지를 입음! 현재 체력: " + health);
+
+        if (health <= 0)
+        {
+            Die(); // 체력이 0 이하일 경우 처리
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("플레이어 사망");
+        // TODO: 사망 처리 (리스폰, 게임 오버 화면 등)
     }
 }
 
